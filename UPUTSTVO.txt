@@ -1,0 +1,51 @@
+AI GOOGLE PROFIL PRO - DALJI KORACI
+
+1) Testiraj stranicu lokalno
+- Otvori index.html u browseru.
+- Proveri SR / CZ / EN dugmad.
+- Popuni formu.
+- Dok ne povežeš CRM, forma će otvoriti WhatsApp kao rezervnu opciju.
+
+2) Poveži Google Sheets CRM
+- Napravi novi Google Sheet.
+- Nazovi ga: AI Google Profil Pro Leads.
+- Idi na Extensions -> Apps Script.
+- Nalepi kod iz fajla apps-script-crm.gs.
+- Sačuvaj.
+- Klikni Deploy -> New deployment.
+- Type: Web app.
+- Execute as: Me.
+- Who has access: Anyone.
+- Deploy.
+- Kopiraj Web App URL.
+
+3) Ubaci URL u index.html
+Nađi liniju:
+
+const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+Zameni je sa:
+
+const GOOGLE_SCRIPT_URL = "TVOJ_WEB_APP_URL";
+
+4) Test
+- Otvori stranicu.
+- Popuni formu.
+- Lead treba da se pojavi u Google Sheet tabeli Leads.
+- Treba da stigne email na Marjan.posao@gmail.com.
+
+5) Deploy na GitHub Pages
+- Napravi repo, npr. ai-google-profil-pro
+- Ubaci index.html
+- Settings -> Pages
+- Deploy from branch
+- Branch: main
+- Folder: /root
+- Save
+
+6) Sledeće unapređenje
+- Dodati hvala/thank-you sekciju.
+- Dodati Google Analytics / Meta Pixel.
+- Dodati QR kod za direktan WhatsApp.
+- Dodati zasebne stranice: privacy.html, terms.html.
+- Dodati CRM statuse: NEW, CONTACTED, OFFER SENT, WON, LOST.

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Google Profil Pro | Google Business Profile Booster</title>
+  <meta name="description" content="Profesionalna AI priprema i optimizacija Google Business profila za lokalne firme na srpskom, češkom i engleskom jeziku." />
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg2: #101827;
+      --card: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --muted: #b7c0d1;
+      --accent: #38bdf8;
+      --accent2: #22c55e;
+      --danger: #fb923c;
+      --border: rgba(255, 255, 255, 0.16);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.24), transparent 32%),
+        radial-gradient(circle at 85% 20%, rgba(34, 197, 94, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .page { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 11, 20, 0.72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -0.03em; }
+    .logo {
+      width: 42px; height: 42px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: grid; place-items: center; color: #04111f; font-weight: 950;
+    }
+
+    .language-switcher {
+      display: flex; gap: 8px; padding: 6px; border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06); border-radius: 999px;
+    }
+    .language-switcher button {
+      border: 0; border-radius: 999px; padding: 9px 14px; background: transparent;
+      color: var(--muted); cursor: pointer; font-weight: 800;
+    }
+    .language-switcher button.active { background: var(--text); color: #07111f; }
+
+    .hero {
+      padding: 84px 0 44px;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex; padding: 9px 13px; border: 1px solid var(--border);
+      border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--muted);
+      font-size: 14px; font-weight: 750; margin-bottom: 18px;
+    }
+
+    h1 { font-size: clamp(42px, 7vw, 76px); line-height: 0.95; margin: 0 0 22px; letter-spacing: -0.07em; }
+    .gradient {
+      background: linear-gradient(90deg, #f8fafc, #7dd3fc, #86efac);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lead { font-size: clamp(18px, 2.4vw, 23px); color: var(--muted); line-height: 1.55; max-width: 720px; margin: 0 0 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+      padding: 0 22px; border-radius: 999px; font-weight: 900; border: 1px solid var(--border); cursor: pointer;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #04111f; border: 0; }
+    .btn-secondary { background: rgba(255,255,255,0.08); color: var(--text); }
+    .trust { color: var(--muted); font-size: 14px; }
+
+    .hero-card, .card {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 16px 42px rgba(0,0,0,0.18);
+    }
+
+    .profile-preview { border-radius: 20px; background: rgba(2,6,23,0.72); border: 1px solid var(--border); padding: 18px; }
+    .map-box {
+      height: 158px; border-radius: 18px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        radial-gradient(circle at 62% 42%, rgba(34,197,94,0.35), transparent 24%),
+        #102033;
+      background-size: 28px 28px, 28px 28px, auto, auto;
+      display: grid; place-items: center; margin-bottom: 16px;
+    }
+    .pin {
+      width: 58px; height: 58px; border-radius: 50% 50% 50% 0;
+      background: linear-gradient(135deg, var(--danger), #ef4444);
+      transform: rotate(-45deg); display: grid; place-items: center;
+    }
+    .pin span { transform: rotate(45deg); font-weight: 950; }
+    .preview-title { display: flex; justify-content: space-between; gap: 10px; align-items: start; margin-bottom: 12px; }
+    .stars { color: #facc15; letter-spacing: 1px; }
+    .small { color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .chip {
+      font-size: 12px; color: #dbeafe; padding: 7px 9px; border-radius: 999px;
+      background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.24);
+    }
+
+    section { padding: 48px 0; }
+    .section-head { max-width: 780px; margin-bottom: 24px; }
+    h2 { font-size: clamp(30px, 4vw, 48px); line-height: 1.05; margin: 0 0 14px; letter-spacing: -0.05em; }
+    .section-head p, .card p, .card li { color: var(--muted); line-height: 1.55; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .icon {
+      width: 44px; height: 44px; border-radius: 14px; background: rgba(56,189,248,0.14);
+      border: 1px solid rgba(56,189,248,0.28); display: grid; place-items: center; margin-bottom: 16px; font-size: 22px;
+    }
+    .card h3 { margin: 0 0 9px; font-size: 20px; letter-spacing: -0.02em; }
+    .card ul { padding-left: 18px; margin: 12px 0 0; }
+    .price { font-size: 40px; font-weight: 950; letter-spacing: -0.04em; margin: 10px 0; }
+    .popular { border-color: rgba(34,197,94,0.55); background: linear-gradient(180deg, rgba(34,197,94,0.15), rgba(255,255,255,0.07)); transform: translateY(-8px); }
+
+    .form-wrap { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 18px; align-items: start; }
+    form { display: grid; gap: 12px; }
+    input, textarea, select {
+      width: 100%; border: 1px solid var(--border); background: rgba(255,255,255,0.08);
+      color: var(--text); border-radius: 16px; padding: 14px 15px; font: inherit; outline: none;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    option { color: #07111f; }
+    .status { min-height: 24px; color: #86efac; font-weight: 700; }
+    .footer { padding: 34px 0 52px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 40px; }
+
+    @media (max-width: 900px) {
+      .hero, .form-wrap, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .hero { padding-top: 52px; }
+      .popular { transform: none; }
+      .nav { align-items: flex-start; }
+    }
+    @media (max-width: 520px) {
+      .page { width: min(100% - 22px, 1180px); }
+      .nav { flex-direction: column; }
+      .language-switcher { width: 100%; justify-content: space-between; }
+      .language-switcher button { flex: 1; }
+      .actions .btn { width: 100%; }
+      .hero-card, .card { padding: 17px; }
+      h1 { font-size: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="page nav">
+      <a href="#top" class="brand"><div class="logo">AI</div><span data-i18n="brand">AI Google Profil Pro</span></a>
+      <div class="language-switcher">
+        <button type="button" class="active" data-lang="sr">SR</button>
+        <button type="button" data-lang="cs">CZ</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="page">
+    <section class="hero">
+      <div>
+        <div class="badge" data-i18n="badge">AI + lokalni SEO + Google Maps</div>
+        <h1><span data-i18n="heroTitleA">Profesionalan Google profil</span> <span class="gradient" data-i18n="heroTitleB">za više poziva.</span></h1>
+        <p class="lead" data-i18n="heroLead">Pripremamo kompletan sadržaj za vaš Google Business Profile: opis firme, usluge, lokalne SEO fraze, Google objave, FAQ pitanja, odgovore na recenzije i plan održavanja.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact" data-i18n="ctaPrimary">Zatraži analizu profila</a>
+          <a class="btn btn-secondary" href="#packages" data-i18n="ctaSecondary">Pogledaj pakete</a>
+        </div>
+        <div class="trust" data-i18n="trust">Bez lozinki. Bez rizičnog pristupa nalogu. Bez lažnih obećanja o prvom mestu.</div>
+      </div>
+      <div class="hero-card">
+        <div class="profile-preview">
+          <div class="map-box"><div class="pin"><span>#1</span></div></div>
+          <div class="preview-title">
+            <div><strong data-i18n="previewName">Vaša firma na Google Maps</strong><div class="small" data-i18n="previewCategory">Lokalna usluga · profesionalni profil</div></div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <div class="small" data-i18n="previewText">Jasan opis, tačne usluge, korisne objave i odgovori koji grade poverenje kod kupaca.</div>
+          <div class="chips">
+            <span class="chip" data-i18n="chip1">Opis firme</span><span class="chip" data-i18n="chip2">Usluge</span><span class="chip" data-i18n="chip3">Objave</span><span class="chip" data-i18n="chip4">FAQ</span><span class="chip" data-i18n="chip5">Recenzije</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits">
+      <div class="section-head"><h2 data-i18n="benefitsTitle">Šta rešavamo?</h2><p data-i18n="benefitsLead">Većina lokalnih firmi ima Google profil koji je prazan, zastareo ili napisan bez lokalnog SEO fokusa. Mi pripremamo sadržaj koji profil čini jasnijim, korisnijim i profesionalnijim.</p></div>
+      <div class="grid-3">
+        <article class="card"><div class="icon">📍</div><h3 data-i18n="benefit1Title">Bolja lokalna vidljivost</h3><p data-i18n="benefit1Text">Pripremamo fraze, usluge i objave koje pomažu kupcima da razumeju gde radite i šta nudite.</p></article>
+        <article class="card"><div class="icon">💬</div><h3 data-i18n="benefit2Title">Više poverenja</h3><p data-i18n="benefit2Text">Jasan opis, FAQ i profesionalni odgovori na recenzije čine profil ozbiljnijim.</p></article>
+        <article class="card"><div class="icon">⚡</div><h3 data-i18n="benefit3Title">Brza priprema</h3><p data-i18n="benefit3Text">Klijent popuni kratak upitnik, a mi pripremamo gotov sadržaj za unos u profil.</p></article>
+      </div>
+    </section>
+
+    <section id="included">
+      <div class="section-head"><h2 data-i18n="includedTitle">Šta dobijate?</h2><p data-i18n="includedLead">Kompletan paket sadržaja za Google Business Profile, spreman za kopiranje ili profesionalni unos.</p></div>
+      <div class="grid-2">
+        <article class="card"><h3 data-i18n="included1Title">Sadržaj za profil</h3><ul><li data-i18n="included1a">Profesionalni opis firme</li><li data-i18n="included1b">Kraća verzija opisa</li><li data-i18n="included1c">Lista usluga sa opisima</li><li data-i18n="included1d">FAQ pitanja i odgovori</li><li data-i18n="included1e">Predlog fotografija</li></ul></article>
+        <article class="card"><h3 data-i18n="included2Title">Lokalni SEO paket</h3><ul><li data-i18n="included2a">Lokalne ključne fraze</li><li data-i18n="included2b">Google Business objave</li><li data-i18n="included2c">Odgovori na pozitivne recenzije</li><li data-i18n="included2d">Odgovori na negativne recenzije</li><li data-i18n="included2e">Plan održavanja profila</li></ul></article>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="section-head"><h2 data-i18n="packagesTitle">Paketi</h2><p data-i18n="packagesLead">Izaberite nivo usluge prema tome da li želite samo pripremljen sadržaj ili kompletan unos i održavanje.</p></div>
+      <div class="grid-3">
+        <article class="card"><h3 data-i18n="pack1Title">Start</h3><div class="price" data-i18n="pack1Price">79 €</div><p data-i18n="pack1Text">Za firme koje žele brzo sređen sadržaj za profil.</p><ul><li data-i18n="pack1a">Opis firme</li><li data-i18n="pack1b">Lista usluga</li><li data-i18n="pack1c">5 Google objava</li><li data-i18n="pack1d">FAQ paket</li></ul></article>
+        <article class="card popular"><h3 data-i18n="pack2Title">Pro</h3><div class="price" data-i18n="pack2Price">199 €</div><p data-i18n="pack2Text">Najbolji izbor za lokalne firme koje žele kompletno sređivanje.</p><ul><li data-i18n="pack2a">Sve iz Start paketa</li><li data-i18n="pack2b">10 Google objava</li><li data-i18n="pack2c">Odgovori na recenzije</li><li data-i18n="pack2d">Pomoć pri unosu sadržaja</li></ul></article>
+        <article class="card"><h3 data-i18n="pack3Title">Premium</h3><div class="price" data-i18n="pack3Price">od 399 €</div><p data-i18n="pack3Text">Za firme koje žele mesečno održavanje i kontinuirani lokalni marketing.</p><ul><li data-i18n="pack3a">Sve iz Pro paketa</li><li data-i18n="pack3b">Mesečne objave</li><li data-i18n="pack3c">Praćenje recenzija</li><li data-i18n="pack3d">Mesečni izveštaj</li></ul></article>
+      </div>
+    </section>
+
+    <section id="safety">
+      <div class="section-head"><h2 data-i18n="safetyTitle">Bezbedan način rada</h2><p data-i18n="safetyLead">Ne tražimo vašu lozinku. Ne koristimo sumnjive botove za prijavu. Sadržaj možete uneti sami ili nas dodati kao menadžera profila.</p></div>
+      <div class="grid-3">
+        <article class="card"><div class="icon">🔒</div><h3 data-i18n="safe1Title">Bez lozinke</h3><p data-i18n="safe1Text">Nikada ne tražimo pristup vašem privatnom Google nalogu.</p></article>
+        <article class="card"><div class="icon">👤</div><h3 data-i18n="safe2Title">Manager pristup</h3><p data-i18n="safe2Text">Ako želite da mi unesemo sadržaj, dodajete nas kao menadžera kroz Google Business Profile.</p></article>
+        <article class="card"><div class="icon">✅</div><h3 data-i18n="safe3Title">Realna obećanja</h3><p data-i18n="safe3Text">Ne garantujemo prvo mesto. Pravimo kvalitetan profil koji povećava poverenje i jasnoću.</p></article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="form-wrap">
+        <div class="section-head">
+          <h2 data-i18n="contactTitle">Zatražite besplatnu mini analizu</h2>
+          <p data-i18n="contactLead">Pošaljite osnovne podatke i link ka profilu. Vratićemo vam kratku procenu šta može da se poboljša.</p>
+          <div class="card"><strong data-i18n="contactBoxTitle">Kontakt</strong><p class="small">WhatsApp: <a href="https://wa.me/420722080268">+420 722 080 268</a><br>Email: <a href="mailto:Marjan.posao@gmail.com">Marjan.posao@gmail.com</a></p></div>
+        </div>
+        <form onsubmit="sendLead(event)">
+          <input id="name" required data-placeholder="formName" placeholder="Ime i prezime" />
+          <input id="business" required data-placeholder="formBusiness" placeholder="Naziv firme" />
+          <input id="city" required data-placeholder="formCity" placeholder="Grad" />
+          <input id="email" type="email" data-placeholder="formEmail" placeholder="Email" />
+          <input id="phone" data-placeholder="formPhone" placeholder="Telefon / WhatsApp" />
+          <input id="profile" data-placeholder="formProfile" placeholder="Link Google profila ako postoji" />
+          <select id="package"><option value="Start">Start</option><option value="Pro">Pro</option><option value="Premium">Premium</option></select>
+          <textarea id="message" data-placeholder="formMessage" placeholder="Kratko opišite čime se firma bavi"></textarea>
+          <button id="submitBtn" class="btn btn-primary" type="submit" data-i18n="formButton">Pošalji zahtev</button>
+          <div id="formStatus" class="status"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="page small" data-i18n="footerText">© AI Google Profil Pro. Usluga pripreme i optimizacije sadržaja za Google Business Profile. Ne garantujemo prvo mesto na Google-u.</div></footer>
+
+  <script>
+    // 1) Ovde ubaci svoj Google Apps Script Web App URL.
+    // Primer: const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycb.../exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbynT7raZArhs7RihRT_ivKWcgXVjrNgRcb9wtJlvqWsSD-FTaOn6vFMqoFJllEI1bnF/exec";
+
+    const WHATSAPP_NUMBER = "420722080268";
+
+    const translations = {
+      sr: {
+        brand:"AI Google Profil Pro", badge:"AI + lokalni SEO + Google Maps", heroTitleA:"Profesionalan Google profil", heroTitleB:"za više poziva.",
+        heroLead:"Pripremamo kompletan sadržaj za vaš Google Business Profile: opis firme, usluge, lokalne SEO fraze, Google objave, FAQ pitanja, odgovore na recenzije i plan održavanja.",
+        ctaPrimary:"Zatraži analizu profila", ctaSecondary:"Pogledaj pakete", trust:"Bez lozinki. Bez rizičnog pristupa nalogu. Bez lažnih obećanja o prvom mestu.",
+        previewName:"Vaša firma na Google Maps", previewCategory:"Lokalna usluga · profesionalni profil", previewText:"Jasan opis, tačne usluge, korisne objave i odgovori koji grade poverenje kod kupaca.",
+        chip1:"Opis firme", chip2:"Usluge", chip3:"Objave", chip4:"FAQ", chip5:"Recenzije",
+        benefitsTitle:"Šta rešavamo?", benefitsLead:"Većina lokalnih firmi ima Google profil koji je prazan, zastareo ili napisan bez lokalnog SEO fokusa. Mi pripremamo sadržaj koji profil čini jasnijim, korisnijim i profesionalnijim.",
+        benefit1Title:"Bolja lokalna vidljivost", benefit1Text:"Pripremamo fraze, usluge i objave koje pomažu kupcima da razumeju gde radite i šta nudite.",
+        benefit2Title:"Više poverenja", benefit2Text:"Jasan opis, FAQ i profesionalni odgovori na recenzije čine profil ozbiljnijim.",
+        benefit3Title:"Brza priprema", benefit3Text:"Klijent popuni kratak upitnik, a mi pripremamo gotov sadržaj za unos u profil.",
+        includedTitle:"Šta dobijate?", includedLead:"Kompletan paket sadržaja za Google Business Profile, spreman za kopiranje ili profesionalni unos.",
+        included1Title:"Sadržaj za profil", included1a:"Profesionalni opis firme", included1b:"Kraća verzija opisa", included1c:"Lista usluga sa opisima", included1d:"FAQ pitanja i odgovori", included1e:"Predlog fotografija",
+        included2Title:"Lokalni SEO paket", included2a:"Lokalne ključne fraze", included2b:"Google Business objave", included2c:"Odgovori na pozitivne recenzije", included2d:"Odgovori na negativne recenzije", included2e:"Plan održavanja profila",
+        packagesTitle:"Paketi", packagesLead:"Izaberite nivo usluge prema tome da li želite samo pripremljen sadržaj ili kompletan unos i održavanje.",
+        pack1Title:"Start", pack1Price:"79 €", pack1Text:"Za firme koje žele brzo sređen sadržaj za profil.", pack1a:"Opis firme", pack1b:"Lista usluga", pack1c:"5 Google objava", pack1d:"FAQ paket",
+        pack2Title:"Pro", pack2Price:"199 €", pack2Text:"Najbolji izbor za lokalne firme koje žele kompletno sređivanje.", pack2a:"Sve iz Start paketa", pack2b:"10 Google objava", pack2c:"Odgovori na recenzije", pack2d:"Pomoć pri unosu sadržaja",
+        pack3Title:"Premium", pack3Price:"od 399 €", pack3Text:"Za firme koje žele mesečno održavanje i kontinuirani lokalni marketing.", pack3a:"Sve iz Pro paketa", pack3b:"Mesečne objave", pack3c:"Praćenje recenzija", pack3d:"Mesečni izveštaj",
+        safetyTitle:"Bezbedan način rada", safetyLead:"Ne tražimo vašu lozinku. Ne koristimo sumnjive botove za prijavu. Sadržaj možete uneti sami ili nas dodati kao menadžera profila.",
+        safe1Title:"Bez lozinke", safe1Text:"Nikada ne tražimo pristup vašem privatnom Google nalogu.", safe2Title:"Manager pristup", safe2Text:"Ako želite da mi unesemo sadržaj, dodajete nas kao menadžera kroz Google Business Profile.", safe3Title:"Realna obećanja", safe3Text:"Ne garantujemo prvo mesto. Pravimo kvalitetan profil koji povećava poverenje i jasnoću.",
+        contactTitle:"Zatražite besplatnu mini analizu", contactLead:"Pošaljite osnovne podatke i link ka profilu. Vratićemo vam kratku procenu šta može da se poboljša.", contactBoxTitle:"Kontakt",
+        formName:"Ime i prezime", formBusiness:"Naziv firme", formCity:"Grad", formEmail:"Email", formPhone:"Telefon / WhatsApp", formProfile:"Link Google profila ako postoji", formMessage:"Kratko opišite čime se firma bavi", formButton:"Pošalji zahtev",
+        sending:"Šaljem...", sent:"Zahtev je poslat. Kontaktiraćemo vas uskoro.", failed:"CRM nije povezan. Otvaram WhatsApp kao rezervnu opciju.",
+        footerText:"© AI Google Profil Pro. Usluga pripreme i optimizacije sadržaja za Google Business Profile. Ne garantujemo prvo mesto na Google-u."
+      },
+      cs: {
+        brand:"AI Google Profil Pro", badge:"AI + lokální SEO + Google Maps", heroTitleA:"Profesionální Google profil", heroTitleB:"pro více hovorů.",
+        heroLead:"Připravíme kompletní obsah pro váš Google Business Profile: popis firmy, služby, lokální SEO fráze, Google příspěvky, FAQ, odpovědi na recenze a plán údržby.",
+        ctaPrimary:"Získat analýzu profilu", ctaSecondary:"Zobrazit balíčky", trust:"Bez hesel. Bez rizikového přístupu k účtu. Bez falešných slibů o prvním místě.",
+        previewName:"Vaše firma na Google Maps", previewCategory:"Lokální služba · profesionální profil", previewText:"Jasný popis, přesné služby, užitečné příspěvky a odpovědi, které budují důvěru zákazníků.",
+        chip1:"Popis firmy", chip2:"Služby", chip3:"Příspěvky", chip4:"FAQ", chip5:"Recenze",
+        benefitsTitle:"Co řešíme?", benefitsLead:"Většina lokálních firem má Google profil prázdný, zastaralý nebo napsaný bez lokálního SEO zaměření. Připravíme obsah, díky kterému bude profil jasnější, užitečnější a profesionálnější.",
+        benefit1Title:"Lepší lokální viditelnost", benefit1Text:"Připravíme fráze, služby a příspěvky, které zákazníkům pomohou pochopit, kde působíte a co nabízíte.",
+        benefit2Title:"Více důvěry", benefit2Text:"Jasný popis, FAQ a profesionální odpovědi na recenze dělají profil serióznější.",
+        benefit3Title:"Rychlá příprava", benefit3Text:"Klient vyplní krátký dotazník a my připravíme hotový obsah pro vložení do profilu.",
+        includedTitle:"Co získáte?", includedLead:"Kompletní balíček obsahu pro Google Business Profile, připravený ke kopírování nebo profesionálnímu vložení.",
+        included1Title:"Obsah pro profil", included1a:"Profesionální popis firmy", included1b:"Krátká verze popisu", included1c:"Seznam služeb s popisy", included1d:"FAQ otázky a odpovědi", included1e:"Návrh fotografií",
+        included2Title:"Lokální SEO balíček", included2a:"Lokální klíčové fráze", included2b:"Google Business příspěvky", included2c:"Odpovědi na pozitivní recenze", included2d:"Odpovědi na negativní recenze", included2e:"Plán údržby profilu",
+        packagesTitle:"Balíčky", packagesLead:"Vyberte si úroveň služby podle toho, zda chcete pouze připravený obsah, nebo kompletní vložení a správu.",
+        pack1Title:"Start", pack1Price:"1 990 Kč", pack1Text:"Pro firmy, které chtějí rychle připravený obsah pro profil.", pack1a:"Popis firmy", pack1b:"Seznam služeb", pack1c:"5 Google příspěvků", pack1d:"FAQ balíček",
+        pack2Title:"Pro", pack2Price:"4 990 Kč", pack2Text:"Nejlepší volba pro lokální firmy, které chtějí kompletní přípravu.", pack2a:"Vše z balíčku Start", pack2b:"10 Google příspěvků", pack2c:"Odpovědi na recenze", pack2d:"Pomoc s vložením obsahu",
+        pack3Title:"Premium", pack3Price:"od 9 990 Kč", pack3Text:"Pro firmy, které chtějí měsíční správu a průběžný lokální marketing.", pack3a:"Vše z balíčku Pro", pack3b:"Měsíční příspěvky", pack3c:"Sledování recenzí", pack3d:"Měsíční report",
+        safetyTitle:"Bezpečný způsob práce", safetyLead:"Nežádáme vaše heslo. Nepoužíváme podezřelé boty pro přihlášení. Obsah můžete vložit sami, nebo nás přidat jako správce profilu.",
+        safe1Title:"Bez hesla", safe1Text:"Nikdy nežádáme přístup k vašemu soukromému Google účtu.", safe2Title:"Přístup správce", safe2Text:"Pokud chcete, abychom obsah vložili my, přidáte nás jako správce v Google Business Profile.", safe3Title:"Reálné sliby", safe3Text:"Negarantujeme první místo. Tvoříme kvalitní profil, který zvyšuje důvěru a jasnost.",
+        contactTitle:"Získejte bezplatnou mini analýzu", contactLead:"Pošlete základní údaje a odkaz na profil. Vrátíme vám krátké zhodnocení, co lze zlepšit.", contactBoxTitle:"Kontakt",
+        formName:"Jméno a příjmení", formBusiness:"Název firmy", formCity:"Město", formEmail:"Email", formPhone:"Telefon / WhatsApp", formProfile:"Odkaz na Google profil, pokud existuje", formMessage:"Krátce popište, čím se firma zabývá", formButton:"Odeslat poptávku",
+        sending:"Odesílám...", sent:"Poptávka byla odeslána. Brzy vás kontaktujeme.", failed:"CRM není propojen. Otevírám WhatsApp jako záložní možnost.",
+        footerText:"© AI Google Profil Pro. Služba přípravy a optimalizace obsahu pro Google Business Profile. Negarantujeme první místo na Google."
+      },
+      en: {
+        brand:"AI Google Profile Pro", badge:"AI + local SEO + Google Maps", heroTitleA:"Professional Google profile", heroTitleB:"for more calls.",
+        heroLead:"We prepare complete content for your Google Business Profile: business description, services, local SEO phrases, Google posts, FAQ, review replies and a maintenance plan.",
+        ctaPrimary:"Request profile analysis", ctaSecondary:"View packages", trust:"No passwords. No risky account access. No false promises about ranking first.",
+        previewName:"Your business on Google Maps", previewCategory:"Local service · professional profile", previewText:"Clear description, accurate services, useful posts and replies that build customer trust.",
+        chip1:"Description", chip2:"Services", chip3:"Posts", chip4:"FAQ", chip5:"Reviews",
+        benefitsTitle:"What do we fix?", benefitsLead:"Most local businesses have a Google profile that is empty, outdated or written without local SEO focus. We prepare content that makes your profile clearer, more useful and more professional.",
+        benefit1Title:"Better local visibility", benefit1Text:"We prepare phrases, services and posts that help customers understand where you work and what you offer.",
+        benefit2Title:"More trust", benefit2Text:"A clear description, FAQ and professional review replies make your profile look more serious.",
+        benefit3Title:"Fast preparation", benefit3Text:"The client fills in a short questionnaire, and we prepare ready-to-use content for the profile.",
+        includedTitle:"What is included?", includedLead:"A complete Google Business Profile content package, ready to copy or professionally upload.",
+        included1Title:"Profile content", included1a:"Professional business description", included1b:"Short description version", included1c:"Service list with descriptions", included1d:"FAQ questions and answers", included1e:"Photo recommendations",
+        included2Title:"Local SEO package", included2a:"Local keyword phrases", included2b:"Google Business posts", included2c:"Positive review replies", included2d:"Negative review replies", included2e:"Profile maintenance plan",
+        packagesTitle:"Packages", packagesLead:"Choose the service level based on whether you want prepared content only, or full upload and maintenance.",
+        pack1Title:"Start", pack1Price:"79 €", pack1Text:"For businesses that want profile content prepared quickly.", pack1a:"Business description", pack1b:"Service list", pack1c:"5 Google posts", pack1d:"FAQ package",
+        pack2Title:"Pro", pack2Price:"199 €", pack2Text:"Best choice for local businesses that want complete preparation.", pack2a:"Everything in Start", pack2b:"10 Google posts", pack2c:"Review replies", pack2d:"Content upload support",
+        pack3Title:"Premium", pack3Price:"from 399 €", pack3Text:"For businesses that want monthly maintenance and ongoing local marketing.", pack3a:"Everything in Pro", pack3b:"Monthly posts", pack3c:"Review monitoring", pack3d:"Monthly report",
+        safetyTitle:"Safe workflow", safetyLead:"We do not ask for your password. We do not use suspicious login bots. You can upload the content yourself or add us as a profile manager.",
+        safe1Title:"No password", safe1Text:"We never ask for access to your private Google account.", safe2Title:"Manager access", safe2Text:"If you want us to upload the content, you add us as a manager through Google Business Profile.", safe3Title:"Realistic promises", safe3Text:"We do not guarantee first place. We create a quality profile that improves trust and clarity.",
+        contactTitle:"Request a free mini analysis", contactLead:"Send basic details and a profile link. We will return a short assessment of what can be improved.", contactBoxTitle:"Contact",
+        formName:"Full name", formBusiness:"Business name", formCity:"City", formEmail:"Email", formPhone:"Phone / WhatsApp", formProfile:"Google profile link if available", formMessage:"Briefly describe what the business does", formButton:"Send request",
+        sending:"Sending...", sent:"Request sent. We will contact you soon.", failed:"CRM is not connected. Opening WhatsApp as backup.",
+        footerText:"© AI Google Profile Pro. Google Business Profile content preparation and optimization service. We do not guarantee first place on Google."
+      }
+    };
+
+    let currentLang = "sr";
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang === "cs" ? "cs" : lang;
+      document.querySelectorAll("[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      document.querySelectorAll("[data-placeholder]").forEach(el => {
+        const key = el.dataset.placeholder;
+        if (translations[lang][key]) el.placeholder = translations[lang][key];
+      });
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
+
+    function collectLead() {
+      return {
+        createdAt: new Date().toISOString(),
+        language: currentLang,
+        source: "AI Google Profil Pro landing",
+        name: document.getElementById("name").value.trim(),
+        business: document.getElementById("business").value.trim(),
+        city: document.getElementById("city").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        profile: document.getElementById("profile").value.trim(),
+        package: document.getElementById("package").value,
+        message: document.getElementById("message").value.trim()
+      };
+    }
+
+    function openWhatsapp(data) {
+      const text =
+        `AI Google Profil Pro - lead%0A%0A` +
+        `Ime/Name: ${encodeURIComponent(data.name)}%0A` +
+        `Firma/Business: ${encodeURIComponent(data.business)}%0A` +
+        `Grad/City: ${encodeURIComponent(data.city)}%0A` +
+        `Email: ${encodeURIComponent(data.email)}%0A` +
+        `Telefon/Phone: ${encodeURIComponent(data.phone)}%0A` +
+        `Google profil: ${encodeURIComponent(data.profile)}%0A` +
+        `Paket/Package: ${encodeURIComponent(data.package)}%0A` +
+        `Opis/Message: ${encodeURIComponent(data.message)}`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+    }
+
+    async function sendLead(event) {
+      event.preventDefault();
+      const t = translations[currentLang];
+      const status = document.getElementById("formStatus");
+      const button = document.getElementById("submitBtn");
+      const data = collectLead();
+
+      status.textContent = t.sending;
+      button.disabled = true;
+
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")) {
+        status.textContent = t.failed;
+        button.disabled = false;
+        openWhatsapp(data);
+        return;
+      }
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(data)
+        });
+
+        status.textContent = t.sent;
+        event.target.reset();
+      } catch (err) {
+        status.textContent = t.failed;
+        openWhatsapp(data);
+      } finally {
+        button.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
