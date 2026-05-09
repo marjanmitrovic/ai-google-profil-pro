@@ -149,6 +149,20 @@
     textarea { min-height: 120px; resize: vertical; }
     option { color: #07111f; }
     .status { min-height: 24px; color: #86efac; font-weight: 700; }
+
+    .qr-card { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .qr-card img { width: 140px; height: 140px; border-radius: 16px; background: white; padding: 8px; }
+    .thank-you {
+      display: none;
+      margin-top: 16px;
+      border: 1px solid rgba(34,197,94,0.5);
+      background: rgba(34,197,94,0.12);
+      border-radius: 20px;
+      padding: 18px;
+    }
+    .thank-you.active { display: block; }
+    .footer-links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; }
+
     .footer { padding: 34px 0 52px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 40px; }
 
     @media (max-width: 900px) {
@@ -167,6 +181,34 @@
       h1 { font-size: 42px; }
     }
   </style>
+
+  <!-- GOOGLE ANALYTICS PLACEHOLDER
+  Replace G-XXXXXXXXXX with your Google Analytics Measurement ID, then remove this HTML comment wrapper.
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-XXXXXXXXXX");
+  </script>
+  -->
+
+  <!-- META PIXEL PLACEHOLDER
+  Replace 000000000000000 with your Meta Pixel ID, then remove this HTML comment wrapper.
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,"script",
+    "https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", "000000000000000");
+    fbq("track", "PageView");
+  </script>
+  -->
+
 </head>
 <body>
   <header>
@@ -242,6 +284,18 @@
       </div>
     </section>
 
+
+    <section id="whatsapp">
+      <div class="card qr-card">
+        <img src="whatsapp-qr.png" alt="WhatsApp QR kod" />
+        <div>
+          <h2 data-i18n="qrTitle">Direktan WhatsApp kontakt</h2>
+          <p data-i18n="qrText">Skenirajte QR kod ili kliknite dugme za direktnu poruku. Najbrži način za dogovor i slanje linka ka Google profilu.</p>
+          <a class="btn btn-primary" href="https://wa.me/420722080268" target="_blank" data-i18n="qrButton">Otvori WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="form-wrap">
         <div class="section-head">
@@ -260,17 +314,25 @@
           <textarea id="message" data-placeholder="formMessage" placeholder="Kratko opišite čime se firma bavi"></textarea>
           <button id="submitBtn" class="btn btn-primary" type="submit" data-i18n="formButton">Pošalji zahtev</button>
           <div id="formStatus" class="status"></div>
+
+          <div id="thankYouBox" class="thank-you">
+            <h3 data-i18n="thanksTitle">Hvala. Zahtev je primljen.</h3>
+            <p data-i18n="thanksText">Kontaktiraćemo vas uskoro. Ako želite brži odgovor, pošaljite nam i WhatsApp poruku.</p>
+            <a class="btn btn-secondary" href="https://wa.me/420722080268" target="_blank" data-i18n="thanksButton">Pošalji WhatsApp poruku</a>
+          </div>
+
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="page small" data-i18n="footerText">© AI Google Profil Pro. Usluga pripreme i optimizacije sadržaja za Google Business Profile. Ne garantujemo prvo mesto na Google-u.</div></footer>
+  <footer class="footer"><div class="page small" data-i18n="footerText">© AI Google Profil Pro. Usluga pripreme i optimizacije sadržaja za Google Business Profile. Ne garantujemo prvo mesto na Google-u.</div><script>document.querySelector(".footer .page").insertAdjacentHTML("beforeend", '<div class="footer-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a></div>');</script>
+</footer>
 
   <script>
     // 1) Ovde ubaci svoj Google Apps Script Web App URL.
     // Primer: const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycb.../exec";
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbynT7raZArhs7RihRT_ivKWcgXVjrNgRcb9wtJlvqWsSD-FTaOn6vFMqoFJllEI1bnF/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyS3r6U_Kjaluco3YQLCjcHzyTT-eLqlG-ZWznq3QiKnAwnKjLU3mOC2XGYjmXv1e8J/exec";
 
     const WHATSAPP_NUMBER = "420722080268";
 
@@ -297,6 +359,7 @@
         contactTitle:"Zatražite besplatnu mini analizu", contactLead:"Pošaljite osnovne podatke i link ka profilu. Vratićemo vam kratku procenu šta može da se poboljša.", contactBoxTitle:"Kontakt",
         formName:"Ime i prezime", formBusiness:"Naziv firme", formCity:"Grad", formEmail:"Email", formPhone:"Telefon / WhatsApp", formProfile:"Link Google profila ako postoji", formMessage:"Kratko opišite čime se firma bavi", formButton:"Pošalji zahtev",
         sending:"Šaljem...", sent:"Zahtev je poslat. Kontaktiraćemo vas uskoro.", failed:"CRM nije povezan. Otvaram WhatsApp kao rezervnu opciju.",
+        qrTitle:"Direktan WhatsApp kontakt", qrText:"Skenirajte QR kod ili kliknite dugme za direktnu poruku. Najbrži način za dogovor i slanje linka ka Google profilu.", qrButton:"Otvori WhatsApp", thanksTitle:"Hvala. Zahtev je primljen.", thanksText:"Kontaktiraćemo vas uskoro. Ako želite brži odgovor, pošaljite nam i WhatsApp poruku.", thanksButton:"Pošalji WhatsApp poruku",
         footerText:"© AI Google Profil Pro. Usluga pripreme i optimizacije sadržaja za Google Business Profile. Ne garantujemo prvo mesto na Google-u."
       },
       cs: {
@@ -321,6 +384,8 @@
         contactTitle:"Získejte bezplatnou mini analýzu", contactLead:"Pošlete základní údaje a odkaz na profil. Vrátíme vám krátké zhodnocení, co lze zlepšit.", contactBoxTitle:"Kontakt",
         formName:"Jméno a příjmení", formBusiness:"Název firmy", formCity:"Město", formEmail:"Email", formPhone:"Telefon / WhatsApp", formProfile:"Odkaz na Google profil, pokud existuje", formMessage:"Krátce popište, čím se firma zabývá", formButton:"Odeslat poptávku",
         sending:"Odesílám...", sent:"Poptávka byla odeslána. Brzy vás kontaktujeme.", failed:"CRM není propojen. Otevírám WhatsApp jako záložní možnost.",
+        qrTitle:"Direktan WhatsApp kontakt", qrText:"Skenirajte QR kod ili kliknite dugme za direktnu poruku. Najbrži način za dogovor i slanje linka ka Google profilu.", qrButton:"Otvori WhatsApp", thanksTitle:"Hvala. Zahtev je primljen.", thanksText:"Kontaktiraćemo vas uskoro. Ako želite brži odgovor, pošaljite nam i WhatsApp poruku.", thanksButton:"Pošalji WhatsApp poruku",
+        qrTitle:"Přímý WhatsApp kontakt", qrText:"Naskenujte QR kód nebo klikněte na tlačítko pro přímou zprávu. Nejrychlejší způsob domluvy a zaslání odkazu na Google profil.", qrButton:"Otevřít WhatsApp", thanksTitle:"Děkujeme. Poptávka byla přijata.", thanksText:"Brzy vás kontaktujeme. Pro rychlejší odpověď nám pošlete i WhatsApp zprávu.", thanksButton:"Poslat WhatsApp zprávu",
         footerText:"© AI Google Profil Pro. Služba přípravy a optimalizace obsahu pro Google Business Profile. Negarantujeme první místo na Google."
       },
       en: {
@@ -345,6 +410,7 @@
         contactTitle:"Request a free mini analysis", contactLead:"Send basic details and a profile link. We will return a short assessment of what can be improved.", contactBoxTitle:"Contact",
         formName:"Full name", formBusiness:"Business name", formCity:"City", formEmail:"Email", formPhone:"Phone / WhatsApp", formProfile:"Google profile link if available", formMessage:"Briefly describe what the business does", formButton:"Send request",
         sending:"Sending...", sent:"Request sent. We will contact you soon.", failed:"CRM is not connected. Opening WhatsApp as backup.",
+        qrTitle:"Direct WhatsApp contact", qrText:"Scan the QR code or click the button for a direct message. The fastest way to send your Google profile link and discuss next steps.", qrButton:"Open WhatsApp", thanksTitle:"Thank you. Your request has been received.", thanksText:"We will contact you soon. For a faster reply, send us a WhatsApp message too.", thanksButton:"Send WhatsApp message",
         footerText:"© AI Google Profile Pro. Google Business Profile content preparation and optimization service. We do not guarantee first place on Google."
       }
     };
@@ -379,7 +445,8 @@
         phone: document.getElementById("phone").value.trim(),
         profile: document.getElementById("profile").value.trim(),
         package: document.getElementById("package").value,
-        message: document.getElementById("message").value.trim()
+        message: document.getElementById("message").value.trim(),
+        status: "NEW"
       };
     }
 
@@ -397,12 +464,24 @@
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
     }
 
+
+    function trackLeadEvent() {
+      if (typeof gtag === "function") {
+        gtag("event", "lead_submit", { event_category: "form", event_label: "AI Google Profil Pro" });
+      }
+      if (typeof fbq === "function") {
+        fbq("track", "Lead");
+      }
+    }
+
     async function sendLead(event) {
       event.preventDefault();
       const t = translations[currentLang];
       const status = document.getElementById("formStatus");
       const button = document.getElementById("submitBtn");
       const data = collectLead();
+      const thankYou = document.getElementById("thankYouBox");
+      if (thankYou) thankYou.classList.remove("active");
 
       status.textContent = t.sending;
       button.disabled = true;
@@ -422,7 +501,9 @@
           body: JSON.stringify(data)
         });
 
+        trackLeadEvent();
         status.textContent = t.sent;
+        if (thankYou) thankYou.classList.add("active");
         event.target.reset();
       } catch (err) {
         status.textContent = t.failed;

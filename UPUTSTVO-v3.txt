@@ -1,0 +1,44 @@
+AI GOOGLE PROFIL PRO v3
+
+DODATO:
+1. Hvala / thank-you sekcija posle slanja forme.
+2. Google Analytics placeholder.
+3. Meta Pixel placeholder.
+4. QR kod za direktan WhatsApp.
+5. privacy.html.
+6. terms.html.
+7. CRM statusi: NEW, CONTACTED, OFFER SENT, WON, LOST.
+
+FAJLOVI:
+- index.html
+- apps-script-crm.gs
+- privacy.html
+- terms.html
+- whatsapp-qr.png
+
+VAŽNO:
+U index.html zameni:
+const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+sa svojim Apps Script Web App URL-om.
+
+GOOGLE ANALYTICS:
+U index.html pronađi GOOGLE ANALYTICS PLACEHOLDER.
+Zameni G-XXXXXXXXXX svojim Measurement ID i ukloni HTML komentar oko bloka.
+
+META PIXEL:
+U index.html pronađi META PIXEL PLACEHOLDER.
+Zameni 000000000000000 svojim Pixel ID i ukloni HTML komentar oko bloka.
+
+APPS SCRIPT:
+1. Google Sheet -> Extensions -> Apps Script.
+2. Nalepi apps-script-crm.gs.
+3. Run doGet jednom za autorizaciju.
+4. Deploy -> New deployment -> Web app.
+5. Execute as: Me.
+6. Who has access: Anyone.
+7. Copy /exec URL.
+8. Ubaci URL u index.html.
+9. Posle svake izmene Apps Script-a: Manage deployments -> Edit -> New version -> Deploy.
+
+GITHUB PAGES:
+U repo ubaci sve fajlove iz ZIP-a i pushuj na main.
